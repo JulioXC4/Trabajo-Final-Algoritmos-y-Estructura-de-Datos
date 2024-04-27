@@ -2,9 +2,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <random>
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
+
 #include "Producto.h"
 #include "Lavadora.h"
 #include "Electrodomestico.h"
@@ -49,22 +52,18 @@ std::vector<Producto*> cargarProductos(const std::string& nombreArchivo) {
         std::string linea;
         while (std::getline(archivo, linea)) {
             std::istringstream ss(linea);
-            std::string tipo;
-            ss >> tipo;
+            std::string marca, sku, precio, stock, tipo;
+
+            std::getline(ss, sku, ',');
+            std::getline(ss, marca, ',');
+            std::getline(ss, precio, ',');
+            std::getline(ss, stock, ',');
+            std::getline(ss, tipo, ','); 
 
             Producto* nuevoProducto = nullptr;
             if (tipo == "Lavadora") {
                 nuevoProducto = new Lavadora(Lavadora::deserializar(linea));
             }
-            /*else if (tipo == "Televisor") {
-                nuevoProducto = new Televisor(Televisor::deserializar(linea));
-            }
-            else if (tipo == "Cafetera") {
-                nuevoProducto = new Cafetera(Cafetera::deserializar(linea));
-            }
-            else if (tipo == "Tostadora") {
-                nuevoProducto = new Tostadora(Tostadora::deserializar(linea));
-            }*/
             else {
                 nuevoProducto = new Producto(Producto::deserializar(linea));
             }
@@ -82,8 +81,8 @@ std::vector<Producto*> cargarProductos(const std::string& nombreArchivo) {
 
 void crearYGuardarProductosDePrueba(const std::string& nombreArchivo) {
     std::vector<Producto*> productos;
-    productos.push_back(new Lavadora(500.0, "Samsung", "LAV001", 10, "Lavadora", "Carga Frontal"));
-    productos.push_back(new Lavadora(600.0, "LG", "LAV002", 8, "Lavadora", "Carga Trasera"));
+    productos.push_back(new Lavadora("LAV001", "Samsung",500.0, 10, "Lavadora", "Carga Frontal"));
+    productos.push_back(new Lavadora("LAV002", "LG", 600.0, 8, "Lavadora", "Carga Trasera"));
 
     guardarProductos(productos, nombreArchivo);
 
@@ -98,4 +97,5 @@ void crearYGuardarProductosDePrueba(const std::string& nombreArchivo) {
         std::cerr << "Error al crear el archivo o guardar los productos de prueba\n";
     }
 }
+
 #endif

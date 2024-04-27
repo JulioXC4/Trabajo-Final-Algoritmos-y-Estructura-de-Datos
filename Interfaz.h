@@ -2,6 +2,7 @@
 #ifndef INTERFAZ_H
 #define INTERFAZ_H
 #include "InterfazCliente.h"
+#include "InterfazAdministrador.h"
 
 #include <iostream>
 
@@ -26,7 +27,7 @@ void mostrarMenuUsuario() {
     int opcion;
     do {
         system("cls");
-        std::cout << "Bienvenido al menu de usuario \n";
+        std::cout << "Panel de Usuario \n";
         std::cout << "1. Ver lista de productos\n";
         std::cout << "2. Agregar productos al carrito de compras\n";
         std::cout << "3. Quitar productos del carrito de compras\n";
@@ -37,19 +38,15 @@ void mostrarMenuUsuario() {
         std::cin >> opcion;
         switch (opcion) {
         case 1:
-            mostrarProductos();
+            mostrarProductosUsuario();
             break;
         case 2:
-            // Agregar productos al carrito
             break;
         case 3:
-            // Quitar productos del carrito
             break;
         case 4:
-            // Ver productos del carrito
             break;
         case 5:
-            // Salir
             break;
         default:
             std::cout << "Opción inválida\n";
@@ -63,16 +60,33 @@ void mostrarMenuAdministrador() {
     int opcion;
     do {
         system("cls");
-        std::cout << "Bienvenido al menu de administrador \n";
+        std::cout << "Panel de Administrador \n";
         std::cout << "1. Ver lista de productos\n";
-        std::cout << "2. Crear nuevo producto\n";
+        std::cout << "2. Crear producto\n";
         std::cout << "3. Quitar producto\n";
-        std::cout << "4. Ver pedidos\n";
-        std::cout << "5. Salir\n";
+        std::cout << "4. Modificar producto\n";
+        std::cout << "5. Ver pedidos\n";
+        std::cout << "6. Volver\n";
         std::cout << "Ingrese su elección: ";
 
         std::cin >> opcion;
-    } while (opcion != 5);
+        switch (opcion) {
+        case 1:
+            mostrarProductosAdministrador();
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        default:
+            std::cout << "Opción inválida\n";
+            break;
+        }
+    } while (opcion != 6);
 
 }
 

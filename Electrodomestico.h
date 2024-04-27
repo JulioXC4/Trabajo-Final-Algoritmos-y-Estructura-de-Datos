@@ -1,5 +1,6 @@
 #pragma once
 #include "Producto.h"
+#include "utils.h"
 
 #include <string>
 #include <fstream>
@@ -14,8 +15,8 @@ private:
     std::string tipo;
 
 public:
-    Electrodomestico(double precio, const std::string& marca, const std::string& sku, int stock, const std::string& tipo)
-        : Producto(precio, marca, sku, stock), tipo(tipo) {}
+    Electrodomestico(const std::string& sku, const std::string& marca, double precio, int stock, const std::string& tipo)
+        : Producto(sku, marca, precio, stock), tipo(tipo) {}
 
     std::string getTipo() const { return tipo; }
     void setTipo(const std::string& nuevoTipo) { tipo = nuevoTipo; }
@@ -26,18 +27,20 @@ public:
 
     static Electrodomestico deserializar(const std::string& cadena) {
         std::stringstream ss(cadena);
-        std::string productoSerializado, tipo;
+        std::string marca, sku, tipo;
+        double precio;
+        int stock;
 
-        if (std::getline(ss, productoSerializado, ',')) {
-            Producto producto = Producto::deserializar(productoSerializado);
-            if (std::getline(ss, tipo)) {
-                return Electrodomestico(producto.getPrecio(), producto.getMarca(), producto.getSku(),
-                    producto.getStock(), tipo);
-            }
+        if (std::getline(ss, sku, ',') &&
+            std::getline(ss, marca, ',') &&
+            (ss >> precio).ignore() &&
+            (ss >> stock).ignore() &&
+            std::getline(ss, tipo)) {
+            return Electrodomestico(sku, marca, precio, stock, tipo);
         }
 
         std::cerr << "Error al deserializar la cadena\n";
-        return Electrodomestico(0.0, "", "", 0, "");
+        return Electrodomestico("", "", 0.0, 0, "");
     }
 };
 

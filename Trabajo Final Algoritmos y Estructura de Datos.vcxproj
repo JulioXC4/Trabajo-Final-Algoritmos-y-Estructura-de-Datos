@@ -138,6 +138,7 @@
     <ClInclude Include="Lavadora.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="utils-f.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,0 +1,2 @@
+T5T1OE,Samsung,500.000000,10,Lavadora,Carga Frontal
+VXMHCY,LG,600.000000,8,Lavadora,Carga Trasera

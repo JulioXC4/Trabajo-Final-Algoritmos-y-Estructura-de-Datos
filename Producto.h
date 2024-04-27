@@ -12,12 +12,12 @@ private:
 
 public:
     virtual ~Producto() {}
-    Producto(double precio, const std::string& marca, const std::string& sku, int stock)
-        : precio(precio), marca(marca), sku(sku), stock(stock) {}
+    Producto(const std::string& sku, const std::string& marca, double precio, int stock)
+        : sku(sku), marca(marca), precio(precio), stock(stock) {}
 
-    double getPrecio() const { return precio; }
-    std::string getMarca() const { return marca; }
     std::string getSku() const { return sku; }
+    std::string getMarca() const { return marca; }
+    double getPrecio() const { return precio; }
     int getStock() const { return stock; }
 
     void setPrecio(double nuevoPrecio) { precio = nuevoPrecio; }
@@ -26,7 +26,7 @@ public:
     void setStock(int nuevoStock) { stock = nuevoStock; }
 
     std::string serializar() const {
-        return marca + "," + sku + "," + std::to_string(precio) + "," + std::to_string(stock);
+        return sku + "," + marca + "," + std::to_string(precio) + "," + std::to_string(stock);
     }
     static Producto deserializar(const std::string& cadena) {
         std::stringstream ss(cadena);
@@ -35,12 +35,12 @@ public:
         int stock;
 
         // Leer valores desde el stringstream
-        if (ss >> marca >> sku >> precio >> stock) {
-            return Producto(precio, marca, sku, stock);
+        if (ss >> sku >> marca >> precio >> stock) {
+            return Producto(sku, marca, precio, stock);
         }
         else {
             std::cerr << "Error al deserializar la cadena\n";
-            return Producto(0.0, "", "", 0);
+            return Producto("", "", 0.0, 0);
         }
     }
 };

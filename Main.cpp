@@ -4,7 +4,7 @@
 #include "utils.h"
 
 int main() {
-    std::string nombreArchivo = "productos_prueba.csv";
+    std::string nombreArchivo = "productos_prueba.txt";
     crearYGuardarProductosDePrueba(nombreArchivo);
 
     int opcion;

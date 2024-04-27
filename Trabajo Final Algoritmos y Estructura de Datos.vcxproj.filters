@@ -68,5 +68,8 @@
     <ClInclude Include="utils.h">
       <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
+    <ClInclude Include="utils-f.h">
+      <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
