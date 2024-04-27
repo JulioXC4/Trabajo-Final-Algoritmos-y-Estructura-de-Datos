@@ -75,6 +75,7 @@ void mostrarMenuAdministrador() {
             mostrarProductosAdministrador();
             break;
         case 2:
+            crearProducto();
             break;
         case 3:
             break;

@@ -56,6 +56,7 @@ void mostrarProductosAdministrador() {
 }
 void crearProducto() {
     int opcionTipo;
+    system("cls");
     do {
         std::cout << "Seleccione el tipo de producto a crear:\n";
         std::cout << "1. Lavadora\n";
@@ -68,9 +69,6 @@ void crearProducto() {
             std::string marca, sku, tipoCarga;
             double precio;
             int stock;
-
-            std::cout << "Ingrese el SKU: ";
-            std::cin >> sku;
             std::cout << "Ingrese la marca: ";
             std::cin >> marca;
             std::cout << "Ingrese el precio: ";
@@ -78,9 +76,25 @@ void crearProducto() {
             std::cout << "Ingrese el stock: ";
             std::cin >> stock;
             std::cout << "Ingrese el tipo de carga: ";
-            std::cin >> tipoCarga;
+            std::cin.ignore();
+            std::getline(std::cin, tipoCarga);
 
-            Producto* nuevoProducto = new Lavadora(sku, marca, precio, stock, "Lavadora", tipoCarga);
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            Producto* nuevoProducto = new Lavadora("sku", marca, precio, stock, "Lavadora", tipoCarga);
+
+            agregarProductoAlArchivo(nuevoProducto, "productos_prueba.txt");
+            system("cls");
+            std::cout << "Producto creado con exito:\n";
+            std::cout << "Marca: " << marca << std::endl;
+            std::cout << "Precio: " << precio << std::endl;
+            std::cout << "Stock: " << stock << std::endl;
+            std::cout << "Tipo de carga: " << tipoCarga << std::endl;
+            std::cout << "-------------------" << std::endl;
+
+            std::cout << "Presione Enter para volver al menú principal...";
+            std::cin.get();
+
             break;
         }
 

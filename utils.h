@@ -98,4 +98,60 @@ void crearYGuardarProductosDePrueba(const std::string& nombreArchivo) {
     }
 }
 
+void agregarProductoAlArchivo(Producto* producto, const std::string& nombreArchivo) {
+    std::ofstream archivo(nombreArchivo, std::ios::out | std::ios::app);
+
+    if (archivo.is_open()) {
+        if (auto lavadora = dynamic_cast<Lavadora*>(producto)) {
+            archivo << lavadora->serializar() << "\n";
+        }
+        /*else if (auto televisor = dynamic_cast<Televisor*>(producto)) {
+            archivo << televisor->serializar() << "\n";
+        }
+        else if (auto cafetera = dynamic_cast<Cafetera*>(producto)) {
+            archivo << cafetera->serializar() << "\n";
+        }
+        else if (auto tostadora = dynamic_cast<Tostadora*>(producto)) {
+            archivo << tostadora->serializar() << "\n";
+        }*/
+        else {
+            archivo << producto->serializar() << "\n";
+        }
+
+        archivo.close();
+        std::cout << "Producto agregado correctamente al archivo " << nombreArchivo << "\n";
+    }
+    else {
+        std::cerr << "Error al abrir el archivo " << nombreArchivo << "\n";
+    }
+}
+
+//void modificarProductoAlArchivo(Producto* producto, const std::string& nombreArchivo) {
+//    std::ofstream archivo(nombreArchivo, std::ios::app);
+//
+//    if (archivo.is_open()) {
+//        if (auto lavadora = dynamic_cast<Lavadora*>(producto)) {
+//            archivo << lavadora->serializar() << "\n";
+//        }
+//        /*else if (auto televisor = dynamic_cast<Televisor*>(producto)) {
+//            archivo << televisor->serializar() << "\n";
+//        }
+//        else if (auto cafetera = dynamic_cast<Cafetera*>(producto)) {
+//            archivo << cafetera->serializar() << "\n";
+//        }
+//        else if (auto tostadora = dynamic_cast<Tostadora*>(producto)) {
+//            archivo << tostadora->serializar() << "\n";
+//        }*/
+//        else {
+//            archivo << producto->serializar() << "\n";
+//        }
+//
+//        archivo.close();
+//        std::cout << "Producto agregado correctamente al archivo " << nombreArchivo << "\n";
+//    }
+//    else {
+//        std::cerr << "Error al abrir el archivo " << nombreArchivo << "\n";
+//    }
+//}
+
 #endif
