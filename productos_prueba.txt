@@ -1,0 +1,4 @@
+WGT0NN,Samsung,500.000000,10,Lavadora,Carga Frontal
+T503BY,LG,600.000000,8,Lavadora,Carga Trasera
+I8TLJR,Son,654.000000,12,Lavadora,por enfrente
+ZJ8CC7,Terrax,555.000000,2,Lavadora,Por atrasito
