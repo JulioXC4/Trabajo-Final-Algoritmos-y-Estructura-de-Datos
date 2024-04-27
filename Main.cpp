@@ -4,6 +4,9 @@
 #include "utils.h"
 
 int main() {
+    std::string nombreArchivo = "productos_prueba.csv";
+    crearYGuardarProductosDePrueba(nombreArchivo);
+
     int opcion;
 
     do {
@@ -26,20 +29,6 @@ int main() {
 
     } while (opcion != 3);
 
-    return 0;
-
-        /*if (opcionSeleccionada == 1 || opcionSeleccionada == 2) {
-            std::string nombreArchivo = "productos_prueba.csv";
-            
-            crearYGuardarProductosDePrueba(nombreArchivo);
-
-            std::vector<Producto> productosCargados = cargarProductos(nombreArchivo);
-            for (const auto& producto : productosCargados) {
-                std::cout << "Precio: " << producto.getPrecio() << std::endl;
-                std::cout << "Stock: " << producto.getStock() << std::endl;
-                std::cout << "-------------------" << std::endl;
-            }
-        }*/
-
+    return 0;           
 
 }

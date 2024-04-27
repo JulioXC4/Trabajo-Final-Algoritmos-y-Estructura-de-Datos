@@ -6,7 +6,7 @@
 
 void mostrarProductos() {
     std::string nombreArchivo = "productos_prueba.csv";
-    std::vector<Producto> productosCargados = cargarProductos(nombreArchivo);
+    std::vector<Producto*> productosCargados = cargarProductos(nombreArchivo);
     int opcion;
     system("cls");
     do {
@@ -20,8 +20,11 @@ void mostrarProductos() {
         case 1:
             std::cout << "Detalles de productos:\n";
             for (const auto& producto : productosCargados) {
-                std::cout << "Precio: " << producto.getPrecio() << std::endl;
-                std::cout << "Stock: " << producto.getStock() << std::endl;
+                std::cout << "Precio: " << producto->getPrecio() << std::endl;
+                std::cout << "Stock: " << producto->getStock() << std::endl;
+                if (Lavadora* lavadora = dynamic_cast<Lavadora*>(producto)) {
+                    std::cout << "Tipo de carga: " << lavadora->getTipoCarga() << std::endl;
+                }
                 std::cout << "-------------------" << std::endl;
             }
             break;

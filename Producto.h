@@ -11,6 +11,7 @@ private:
     int stock;
 
 public:
+    virtual ~Producto() {}
     Producto(double precio, const std::string& marca, const std::string& sku, int stock)
         : precio(precio), marca(marca), sku(sku), stock(stock) {}
 

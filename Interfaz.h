@@ -55,7 +55,7 @@ void mostrarMenuUsuario() {
             std::cout << "Opción inválida\n";
             break;
         }
-    } while (opcion < 1 || opcion >5);
+    } while (opcion != 5);
 
 }
 
@@ -72,7 +72,7 @@ void mostrarMenuAdministrador() {
         std::cout << "Ingrese su elección: ";
 
         std::cin >> opcion;
-    } while (opcion < 1 || opcion >5);
+    } while (opcion != 5);
 
 }
 

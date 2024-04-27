@@ -6,17 +6,33 @@
 #include <fstream>
 #include <vector>
 #include "Producto.h"
+#include "Lavadora.h"
+#include "Electrodomestico.h"
 
 bool existeArchivo(const std::string& nombreArchivo) {
     std::ifstream archivo(nombreArchivo);
     return archivo.good();
 }
 
-void guardarProductos(const std::vector<Producto>& productos, const std::string& nombreArchivo) {
+void guardarProductos(const std::vector<Producto*>& productos, const std::string& nombreArchivo) {
     std::ofstream archivo(nombreArchivo);
     if (archivo.is_open()) {
         for (const auto& producto : productos) {
-            archivo << producto.serializar() << "\n";
+            if (auto lavadora = dynamic_cast<Lavadora*>(producto)) {
+                archivo << lavadora->serializar() << "\n"; 
+            }
+            /*else if (auto televisor = dynamic_cast<Televisor*>(producto)) {
+                archivo << televisor->serializar() << "\n"; 
+            }
+            else if (auto cafetera = dynamic_cast<Cafetera*>(producto)) {
+                archivo << cafetera->serializar() << "\n"; 
+            }
+            else if (auto tostadora = dynamic_cast<Tostadora*>(producto)) {
+                archivo << tostadora->serializar() << "\n"; 
+            }*/
+            else {
+                archivo << producto->serializar() << "\n"; 
+            }
         }
         archivo.close();
         std::cout << "Productos guardados correctamente en " << nombreArchivo << "\n";
@@ -26,14 +42,34 @@ void guardarProductos(const std::vector<Producto>& productos, const std::string&
     }
 }
 
-
-std::vector<Producto> cargarProductos(const std::string& nombreArchivo) {
-    std::vector<Producto> productos;
+std::vector<Producto*> cargarProductos(const std::string& nombreArchivo) {
+    std::vector<Producto*> productos;
     std::ifstream archivo(nombreArchivo);
     if (archivo.is_open()) {
         std::string linea;
         while (std::getline(archivo, linea)) {
-            productos.push_back(Producto::deserializar(linea));
+            std::istringstream ss(linea);
+            std::string tipo;
+            ss >> tipo;
+
+            Producto* nuevoProducto = nullptr;
+            if (tipo == "Lavadora") {
+                nuevoProducto = new Lavadora(Lavadora::deserializar(linea));
+            }
+            /*else if (tipo == "Televisor") {
+                nuevoProducto = new Televisor(Televisor::deserializar(linea));
+            }
+            else if (tipo == "Cafetera") {
+                nuevoProducto = new Cafetera(Cafetera::deserializar(linea));
+            }
+            else if (tipo == "Tostadora") {
+                nuevoProducto = new Tostadora(Tostadora::deserializar(linea));
+            }*/
+            else {
+                nuevoProducto = new Producto(Producto::deserializar(linea));
+            }
+
+            productos.push_back(nuevoProducto);
         }
         archivo.close();
         std::cout << "Productos cargados correctamente desde " << nombreArchivo << "\n";
@@ -45,12 +81,15 @@ std::vector<Producto> cargarProductos(const std::string& nombreArchivo) {
 }
 
 void crearYGuardarProductosDePrueba(const std::string& nombreArchivo) {
-    std::vector<Producto> productosPrueba;
-    productosPrueba.push_back(Producto(10.99, "Marca1", "SKU1", 100));
-    productosPrueba.push_back(Producto(20.49, "Marca2", "SKU2", 50));
-    productosPrueba.push_back(Producto(15.75, "Marca3", "SKU3", 75));
+    std::vector<Producto*> productos;
+    productos.push_back(new Lavadora(500.0, "Samsung", "LAV001", 10, "Lavadora", "Carga Frontal"));
+    productos.push_back(new Lavadora(600.0, "LG", "LAV002", 8, "Lavadora", "Carga Trasera"));
 
-    guardarProductos(productosPrueba, nombreArchivo);
+    guardarProductos(productos, nombreArchivo);
+
+    for (auto& producto : productos) {
+        delete producto;
+    }
 
     if (existeArchivo(nombreArchivo)) {
         std::cout << "Archivo creado y productos de prueba guardados correctamente en " << nombreArchivo << "\n";
