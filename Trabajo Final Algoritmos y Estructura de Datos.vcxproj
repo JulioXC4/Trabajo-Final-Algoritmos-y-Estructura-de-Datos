@@ -127,14 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Interfaz.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Electrodomestico.h" />
     <ClInclude Include="Interfaz.h" />
+    <ClInclude Include="InterfazAdministrador.h" />
+    <ClInclude Include="InterfazCliente.h" />
+    <ClInclude Include="Lavadora.h" />
+    <ClInclude Include="Producto.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

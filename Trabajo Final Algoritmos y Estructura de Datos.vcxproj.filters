@@ -13,15 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Producto">
+      <UniqueIdentifier>{6062d1b2-620f-441e-8426-cf6c4af3ae30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Producto\Electrodomestico">
+      <UniqueIdentifier>{269bd832-bc31-4f64-819b-a4a2f5ba138b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Producto\Electrodomestico\Tipos">
+      <UniqueIdentifier>{e864991d-f813-4c7d-b449-fd93e953ebbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Interfaz">
+      <UniqueIdentifier>{7b0afae0-b81a-452a-838f-43d3529b2716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Interfaz\Cliente">
+      <UniqueIdentifier>{70c46c54-2454-4f29-a08d-0966cb984189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Interfaz\Administrador">
+      <UniqueIdentifier>{6b342d39-a4c5-4473-8545-d3301859cc33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\utils">
+      <UniqueIdentifier>{8e44d748-80bd-421a-b5dd-9464b440d7d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Interfaz.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31,6 +46,27 @@
     </ClInclude>
     <ClInclude Include="Admin.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Producto.h">
+      <Filter>Archivos de encabezado\Producto</Filter>
+    </ClInclude>
+    <ClInclude Include="Electrodomestico.h">
+      <Filter>Archivos de encabezado\Producto\Electrodomestico</Filter>
+    </ClInclude>
+    <ClInclude Include="Lavadora.h">
+      <Filter>Archivos de encabezado\Producto\Electrodomestico\Tipos</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaz.h">
+      <Filter>Archivos de encabezado\Interfaz</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazCliente.h">
+      <Filter>Archivos de encabezado\Interfaz\Cliente</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazAdministrador.h">
+      <Filter>Archivos de encabezado\Interfaz\Administrador</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
